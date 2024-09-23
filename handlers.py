@@ -1,12 +1,14 @@
 import utils
 
+def get_coupons(req):
+    context = req.get
+    # query coupon db
+    return {}
 
 def make_coupons(req):
-    # check auth
-
+    # context = req.get('context')
+    matches = get_matches(
+    # get matches
     # update db
     return {}
 
-def get_coupons(req):
-    # query coupon db
-    return {}
