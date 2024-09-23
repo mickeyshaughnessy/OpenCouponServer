@@ -1,7 +1,7 @@
 # Beavis
 Beavis, an open API for coupon advertisers to upload, and LLM chatbot providers to offer: 
 
-#### legit coupons!
+#### coupons legit!!!
 
 ![image](https://github.com/user-attachments/assets/7d261204-199d-404d-8808-64ea230cef2a)
 
