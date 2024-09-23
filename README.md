@@ -27,7 +27,7 @@ The route for LLM chatbot and other AI systems to get coupons.
 
 ### /MAKE_COUPONS(...):
 
-The route for businesses to upload coupons.
+The route for businesses to upload coupons. `bid_price` is the maximum amount the business agrees to pay when the coupon is redeemed. 
  
 * Input: POST JSON containing:
   * advertiser_key
@@ -36,6 +36,8 @@ The route for businesses to upload coupons.
   * coupon_text
   * coupon_image
   * bid_price
+
+
 
   Eg:
 
