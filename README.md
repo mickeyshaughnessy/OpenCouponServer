@@ -1,14 +1,15 @@
 # OpenCouponServer
-This is an open API for coupon advertisers to upload and LLM chatbot providers to offer 
+Beavis, an open API for coupon advertisers to upload, and LLM chatbot providers to offer: 
 
-legit coupons!
+#### legit coupons!
 
 ![image](https://github.com/user-attachments/assets/7d261204-199d-404d-8808-64ea230cef2a)
 
 There are two routes, one for businesses to upload coupons, one for chatbots to get coupons.
 
-### GET_COUPONS
-* Input: You can POST any text string up to 2k characters.
+### GET_COUPONS(context, N_COUPONS, chatbot_id, GET_IMAGES 
+* Input:
+  * POST JSON any text string up to 2k characters.
   * You can optionally pass a N_COUPONS value in the string. If you do, you assert you will offer N_COUPONS through the chatbot interface.
   * You can optionally pass a GET_IMAGES value. If you do, you assert you will display the images through the chatbot interface.
 
