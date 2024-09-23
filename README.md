@@ -5,7 +5,7 @@ Beavis, an open API for coupon advertisers to upload, and LLM chatbot providers 
 
 ![image](https://github.com/user-attachments/assets/7d261204-199d-404d-8808-64ea230cef2a)
 
-There are two routes: one for businesses to upload coupons they one to offer to potential customers and another one for chatbots to get coupons to offer to conversations.
+There are two routes: one for businesses to upload coupons they one to offer to potential customers and another one for chatbots to get coupons to offer into conversations.
 
 ----------------------------------------------------
 
