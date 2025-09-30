@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beavis API Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        h3 {
+            color: #764ba2;
+            font-size: 1.4em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .endpoint {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .method {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.9em;
+        }
+        
+        .path {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            color: #333;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+        
+        code {
+            font-family: 'Courier New', monospace;
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #e83e8c;
+        }
+        
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: #f8f8f2;
+        }
+        
+        .param-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .param-table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .param-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .param-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .required {
+            color: #dc3545;
+            font-weight: bold;
+            font-size: 0.85em;
+        }
+        
+        .optional {
+            color: #6c757d;
+            font-size: 0.85em;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .note strong {
+            color: #856404;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #6c757d;
+        }
+        
+        .base-url {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎟️ Beavis API</h1>
+            <p>Open Coupon Distribution Platform for AI Chatbots and Advertisers</p>
+        </header>
+
+        <div class="section">
+            <h2>Overview</h2>
+            <p>Beavis is an open API that connects coupon advertisers with LLM chatbot providers. Businesses can upload coupons, and AI chatbots can retrieve contextually relevant coupons to offer users during conversations.</p>
+            
+            <div class="base-url">
+                <strong>Base URL:</strong> https://api.beavis.com
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Authentication</h2>
+            <p>All API requests require authentication. Include your credentials in the request body:</p>
+            <ul style="margin-left: 30px; margin-top: 10px;">
+                <li><strong>Chatbots:</strong> Use <code>chatbot_id</code> and <code>token</code></li>
+                <li><strong>Advertisers:</strong> Use <code>account_id</code> and <code>key</code></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Endpoints</h2>
+
+            <h3>1. GET_COUPONS - Retrieve Coupons for Chatbots</h3>
+            <p>This endpoint allows LLM chatbots to retrieve contextually relevant coupons based on conversation context.</p>
+            
+            <div class="endpoint">
+                <span class="method">POST</span>
+                <span class="path">/GET_COUPONS</span>
+            </div>
+
+            <h4>Request Body</h4>
+            <table class="param-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>chatbot_id</code></td>
+                        <td>string</td>
+                        <td><span class="required">REQUIRED</span></td>
+                        <td>Your unique chatbot identifier</td>
+                    </tr>
+                    <tr>
+                        <td><code>token</code></td>
+                        <td>string</td>
+                        <td><span class="required">REQUIRED</span></td>
+                        <td>Authentication token</td>
+                    </tr>
+                    <tr>
+                        <td><code>context</code></td>
+                        <td>string</td>
+                        <td><span class="required">REQUIRED</span></td>
+                        <td>Conversation context (max 2000 characters)</td>
+                    </tr>
+                    <tr>
+                        <td><code>N_COUPONS</code></td>
+                        <td>number</td>
+                        <td><span class="optional">optional</span></td>
+                        <td>Number of coupons to return (default: 5)</td>
+                    </tr>
+                    <tr>
+                        <td><code>GET_IMAGES</code></td>
+                        <td>boolean</td>
+                        <td><span class="optional">optional</span></td>
+                        <td>Include coupon images (default: false)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Request Example</h4>
+            <pre><code>{
+  "chatbot_id": "chatbot_abc123",
+  "token": "sk_test_xyz789",
+  "context": "User is looking for electronics deals and mentioned interest in laptops",
+  "N_COUPONS": 3,
+  "GET_IMAGES": true
+}</code></pre>
+
+            <h4>Response Example</h4>
+            <pre><code>{
+  "coupons": [
+    {
+      "coupon_id": "c1234",
+      "text": "20% off all laptops - expires 10/31/2025",
+      "image_url": "https://example.com/laptop-coupon.jpg",
+      "score": 0.95,
+      "bid_price": 0.50
+    },
+    {
+      "coupon_id": "c5678",
+      "text": "Free shipping on electronics over $100",
+      "image_url": "https://example.com/shipping-coupon.jpg",
+      "score": 0.88,
+      "bid_price": 0.30
+    }
+  ]
+}</code></pre>
+
+            <div class="note">
+                <strong>Note:</strong> Coupons are ranked by relevance score and bid price. By requesting N_COUPONS, you agree to display that many coupons in your interface.
+            </div>
+
+            <h3>2. MAKE_COUPONS - Upload Coupons for Advertisers</h3>
+            <p>This endpoint allows businesses to upload coupons to the Beavis platform.</p>
+            
+            <div class="endpoint">
+                <span class="method">POST</span>
+                <span class="path">/MAKE_COUPONS</span>
+            </div>
+
+            <h4>Request Body</h4>
+            <table class="param-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>account_id</code></td>
+                        <td>string</td>
+                        <td><span class="required">REQUIRED</span></td>
+                        <td>Your advertiser account ID</td>
+                    </tr>
+                    <tr>
+                        <td><code>key</code></td>
+                        <td>string</td>
+                        <td><span class="required">REQUIRED</span></td>
+                        <td>API authentication key</td>
+                    </tr>
+                    <tr>
+                        <td><code>coupons</code></td>
+                        <td>array</td>
+                        <td><span class="required">REQUIRED</span></td>
+                        <td>Array of coupon objects</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Coupon Object Structure</h4>
+            <table class="param-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>text_body</code></td>
+                        <td>string</td>
+                        <td><span class="required">REQUIRED</span></td>
+                        <td>Coupon description (max 256 characters)</td>
+                    </tr>
+                    <tr>
+                        <td><code>bid_price</code></td>
+                        <td>number</td>
+                        <td><span class="required">REQUIRED</span></td>
+                        <td>Maximum bid per coupon offer (USD)</td>
+                    </tr>
+                    <tr>
+                        <td><code>image_url</code></td>
+                        <td>string</td>
+                        <td><span class="optional">optional</span></td>
+                        <td>URL to coupon image</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Request Example</h4>
+            <pre><code>{
+  "account_id": "business_nutella_123",
+  "key": "ak_live_abc123xyz",
+  "coupons": [
+    {
+      "text_body": "10% off Nutella jars - valid until 12/31/2025",
+      "bid_price": 0.15,
+      "image_url": "https://s3.nutellacoupons.com/coupon123.jpg"
+    },
+    {
+      "text_body": "Buy 2 get 1 free on all Nutella products",
+      "bid_price": 0.25,
+      "image_url": "https://s3.nutellacoupons.com/coupon456.jpg"
+    }
+  ]
+}</code></pre>
+
+            <h4>Response Example</h4>
+            <pre><code>{
+  "status": "Coupons published successfully",
+  "coupon_ids": [
+    "c1a2b3c4-d5e6-7f8g-9h0i-j1k2l3m4n5o6",
+    "p7q8r9s0-t1u2-3v4w-5x6y-7z8a9b0c1d2e"
+  ]
+}</code></pre>
+
+            <div class="note">
+                <strong>Note:</strong> The bid_price determines how much you pay when a coupon is offered. Higher bids increase visibility in competitive contexts.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Error Responses</h2>
+            <p>All endpoints return standard error responses:</p>
+            
+            <h4>Authentication Error</h4>
+            <pre><code>{
+  "error": "Authentication failed"
+}</code></pre>
+
+            <h4>Validation Error</h4>
+            <pre><code>{
+  "error": "No coupons provided"
+}</code></pre>
+
+            <h4>Rate Limit Error</h4>
+            <pre><code>{
+  "error": "Rate limit exceeded. Try again in 60 seconds."
+}</code></pre>
+        </div>
+
+        <div class="section">
+            <h2>Rate Limits</h2>
+            <ul style="margin-left: 30px;">
+                <li><strong>GET_COUPONS:</strong> 1000 requests per hour per chatbot_id</li>
+                <li><strong>MAKE_COUPONS:</strong> 100 requests per hour per account_id</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Best Practices</h2>
+            <h3>For Chatbot Providers</h3>
+            <ul style="margin-left: 30px;">
+                <li>Provide rich context (recent conversation turns) for better coupon matching</li>
+                <li>Respect the N_COUPONS parameter - display the number of coupons you request</li>
+                <li>Cache responses appropriately to reduce API calls</li>
+                <li>Handle errors gracefully and provide fallback experiences</li>
+            </ul>
+
+            <h3>For Advertisers</h3>
+            <ul style="margin-left: 30px;">
+                <li>Write clear, concise coupon descriptions</li>
+                <li>Include expiration dates and key terms in the text</li>
+                <li>Set competitive bid prices based on customer acquisition value</li>
+                <li>Update or remove expired coupons regularly</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Support</h2>
+            <p>For API questions, issues, or to request API credentials:</p>
+            <ul style="margin-left: 30px;">
+                <li>📧 Email: <a href="mailto:api@beavis.com">api@beavis.com</a></li>
+                <li>📚 Documentation: <a href="https://docs.beavis.com">docs.beavis.com</a></li>
+                <li>💬 Discord: <a href="https://discord.gg/beavis">discord.gg/beavis</a></li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Beavis API - Open Coupon Platform</p>
+            <p>Version 1.0 | Last Updated: September 2025</p>
+        </footer>
+    </div>
+</body>
+</html>
